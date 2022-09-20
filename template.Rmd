@@ -6,13 +6,77 @@ output:
   github_document: default
 ---
 
+```{r}
+```{r}
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+
 ## Data Import: CSVs
 
-Let's import data using the 'readr' package
+Let's import data using the `readr` package
 
 ```{r}
 library(tidyverse)
-litters_df = read.csv("data/FAS_litters.csv")
-litters_df = janitor::clean_names(littlers_df)
+library(read_excel)
+litters_df = read.csv("./data_import_examples/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+```
+
+look at data
+```{r}
+litters_df
+```
+
+
+```{r}
+skimr::skim(litters_df)
+```
+
+`read_csv` options
+
+```{r}
+read_csv("./data_import_examples/FAS_litters.csv")
+```
+
+
+##other file formats
+
+we need to read in an excel spreadsheet
+
+```{r}
+library(tidyverse)
+library(readxl)
+mlb_df = read_excel("./data_import_examples/mlb11.xlsx",
+                    range = "B3:D6")
+
+mlb_df
+```
+
+```{r}
+view(mlb_df)
+```
+
+
+```{r}
+lotr_words_df = 
+  read_excel(
+    "./data_import_examples/LotR_Words.xlsx"
+  )
+
+lotr_words_df
+```
+
+##Still more formats...
+
+Read in a SAS dataset
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(haven)
+pulse_df = read_sas("./data_import_examples/public_pulse_data.sas7bdat")
 ```
 
